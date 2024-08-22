@@ -9,7 +9,7 @@ class BarangList extends ConsumerWidget {
   ///
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final barang = ref.watch(barangListState);
+    final barang = ref.watch(barangListProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class BarangList extends ConsumerWidget {
                   onChanged: (value) {
                     if (value != null) {
                       final newBarang = b.copyWith(completed: value);
-                      ref.read(barangListState.notifier).save(newBarang);
+                      ref.read(barangListProvider.notifier).save(newBarang);
                     }
                   },
                 ),

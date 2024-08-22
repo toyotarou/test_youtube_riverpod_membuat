@@ -16,7 +16,5 @@
 ---
 [Delete dengan Riverpod 2023 [Episode 9]](https://www.youtube.com/watch?v=3aMa1tTs3Zw)
 ---
----
----
 [Migrasi ke Riverpod Generator [Episode 10]](https://www.youtube.com/watch?v=fJfblIcqg50)
 ---

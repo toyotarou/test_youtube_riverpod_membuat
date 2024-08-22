@@ -1,4 +1,6 @@
-import 'package:collection/collection.dart';
+// import 'package:collection/collection.dart';
+//
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,7 +34,7 @@ class _BarangCreateEditState extends ConsumerState<BarangCreateEdit> {
   Widget build(BuildContext context) {
     if (updateValueSet == false) {
       Future(() {
-        ref.read(barangListState.notifier).get(widget.id!).then((value) {
+        ref.read(barangListProvider.notifier).get(widget.id!).then((value) {
           if (value != null) {
             titleEditingController.text = value.name;
             descriptionEditingController.text = value.description;
@@ -60,20 +62,20 @@ class _BarangCreateEditState extends ConsumerState<BarangCreateEdit> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text('delete?'),
-                      content: Text('delete?'),
+                      title: const Text('delete?'),
+                      content: const Text('delete?'),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(false);
                           },
-                          child: Text('cancel'),
+                          child: const Text('cancel'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(true);
                           },
-                          child: Text('confirm'),
+                          child: const Text('confirm'),
                         ),
                       ],
                     );
@@ -82,18 +84,18 @@ class _BarangCreateEditState extends ConsumerState<BarangCreateEdit> {
 
                 if (confirm) {
                   ref
-                      .read(barangListState.notifier)
+                      .read(barangListProvider.notifier)
                       .get(widget.id!)
                       .then((value) {
                     if (value != null) {
-                      ref.read(barangListState.notifier).delete(value);
+                      ref.read(barangListProvider.notifier).delete(value);
 
                       if (router.canPop()) router.pop();
                     }
                   });
                 }
               },
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
             ),
           ],
         ],
@@ -151,7 +153,7 @@ class _BarangCreateEditState extends ConsumerState<BarangCreateEdit> {
               completed: isCompleted,
             );
 
-            ref.read(barangListState.notifier).save(barang);
+            ref.read(barangListProvider.notifier).save(barang);
 
             context.pop();
           }
